@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth UI</title>
+  <link rel="stylesheet" href="./assets/styles/style.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="form-box">
+
+
+<div class="toggle">
+  <div class="slider"></div>
+  <button id="loginBtn" class="active">Login</button>
+  <button id="registerBtn">Register</button>
+</div>
+
+<div class="forms">
+  
+  <!-- Login -->
+  <form id="loginForm" class="form active">
+    <h2>Login</h2>
+    <input type="email" placeholder="Email" required id="loginEmail">
+    <input type="password" placeholder="Password" required id="loginPassword">
+    <button type="submit">Login</button>
+  </form>
+
+  <!-- Register -->
+  <form id="registerForm" class="form">
+    <h2>Register</h2>
+    <input type="email" placeholder="Email" required id="registerEmail">
+    <input type="password" placeholder="Password" required id="registerPassword">
+    <button type="submit">Register</button>
+  </form>
+
+</div>
+
+
+  </div>
+
+</div>
+
+<script src="./assets/js/script.js"></script>
+
+</body>
+</html>
+
