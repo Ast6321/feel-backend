@@ -2,7 +2,9 @@ const express = require("express");
 const router  = express.Router();
 const user = require("../models/models");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const testmiddleware = require("../middlewares/middleware")
+
 
 
 router.post("/register",async (req,res)=>{
@@ -64,7 +66,7 @@ router.post("/login",async(req,res)=>{
                 id:registerduser._id,
                 email:registerduser.email
             },
-             "secretkey",
+             "ABC",
             { expiresIn: "1m" }
          )
 
@@ -75,6 +77,12 @@ router.post("/login",async(req,res)=>{
        res.status(500).json("login failed") 
     }
 })
+
+
+router.get("/test",testmiddleware,(req,res)=>{
+    res.json("hello i am working");
+})
+
 
 
 
