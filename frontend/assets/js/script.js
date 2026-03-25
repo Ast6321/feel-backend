@@ -28,6 +28,8 @@ loginForm.classList.remove("active");
 
 
 
+
+
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -53,11 +55,17 @@ loginForm.addEventListener("submit", async (e) => {
     if (data.token) {
    
       localStorage.setItem("token", data.token);
+      window.location.href = "user.html";
 
-      alert("Login successful ");
+    
     loginForm.reset(); 
 
-    } else {
+
+
+      callProtectedAPI();
+
+    } 
+    else {
       alert(data.message || "Login failed ");
     }
 
@@ -65,6 +73,43 @@ loginForm.addEventListener("submit", async (e) => {
     console.log("Error:", error);
   }
 });
+
+
+
+async function callProtectedAPI() {
+
+  const token = localStorage.getItem("token",data.token);
+
+  try {
+    const res = await fetch("http://localhost:8000/test", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    const data = await res.json();
+
+    console.log("Protected API Response:", data);
+
+  } catch (error) {
+    console.log("Error:", error);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 registerForm.addEventListener("submit", async (e) => {

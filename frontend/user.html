@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      color: white;
+      width: 350px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 25px;
+      opacity: 0.9;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: white;
+      color: #764ba2;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #f1f1f1;
+      transform: scale(1.05);
+    }
+
+    .logout {
+      margin-top: 15px;
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+    }
+
+    .logout:hover {
+      background: white;
+      color: #764ba2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Welcome 🎉</h1>
+    <p>You are successfully logged in</p>
+
+    <button class="btn" onclick="fetchProfile()">Get Profile</button>
+    <br>
+    <button class="btn logout" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    async function fetchProfile() {
+      const token = localStorage.getItem("token");
+
+      try {
+        const res = await fetch("http://localhost:8000/test", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        const data = await res.json();
+        alert(JSON.stringify(data));
+
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("token");
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
